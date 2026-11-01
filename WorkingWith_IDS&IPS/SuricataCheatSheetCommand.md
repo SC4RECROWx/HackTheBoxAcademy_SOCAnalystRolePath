@@ -1,4 +1,4 @@
-CHEAT SHEET SURICATA
+# CHEAT SHEET SURICATA
 - /etc/suricata/rules						= isi Suricata Rules
 - /etc/suricata/suricata.yaml					= konfigurasi Suricata
 - suricata -r <File .pcap>					= Membaca file pcaps
@@ -21,7 +21,7 @@ CHEAT SHEET SURICATA
 		  | .pcap_cnt
 - 
 
-tips
+## tips
 -i								= switch otomatis untuk tinggal sebutkan saja NetInterface biarkan suricata yang memilih mesin terbaik(af-packet)
 --af-packet							= switch menyedot packet langsung dari interface
 --pcap								= gunakan untuk membaca file pcap
