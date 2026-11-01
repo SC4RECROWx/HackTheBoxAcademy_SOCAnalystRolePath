@@ -28,20 +28,20 @@ sudo kill -usr2 $(pidof suricata)				= command untuk merefresh/update rules suri
 ``` bash
 - -i								= switch otomatis untuk tinggal sebutkan saja NetInterface biarkan suricata yang memilih mesin terbaik(af-packet)
 - --af-packet							= switch menyedot packet langsung dari interface
-- --pcap								= gunakan untuk membaca file pcap
+- --pcap							= gunakan untuk membaca file pcap
 - fast.log							= hanya menampilkan Alert
-- eve.log								= menampilkan semua event
+- eve.log							= menampilkan semua event
 - stats.log							= menampilkan kinerja mesin/suricata (memantau performa suricata)
 - suricata.log							= menampilkan log suricata
 - filestore							= tempat suricata menyimpan file hasil ekstraksi
-- find . -type f							= mencari type file saja (biasanya digunakan pada filestore)
+- find . -type f						= mencari type file saja (biasanya digunakan pada filestore)
 - xxd <file filestore> | head					= membongkar file filestore yang berhasil di ekstrak dan mengambil bagian atasnya saja (head)
 - sudo kill -usr2 $(pidof suricata)				= command untuk mengupdate rule suricata tanpa mematikannya
 - sudo suricata-update						= untuk mengupdate suricata dari sumber terpercaya di internet
 - sudo suricata-update list-sources				= untuk menampilkan daftar source terpercaya di internet yang terpasang di suricata
 - sudo suricata-update enable-source <RuleName>			= untuk mengaktifkan dan memilih salah satu rules yang ada di list-sources
-- sudo systemctl restart suricata					= untuk merestart suricata
-- sudo suricata -T -c /etc/suricata/suricata.yaml			= command untuk mengecek konfigurasi apakah sudah benar atau ada salah tulis yang dapat menciptakan error
+- sudo systemctl restart suricata				= untuk merestart suricata
+- sudo suricata -T -c /etc/suricata/suricata.yaml		= command untuk mengecek konfigurasi apakah sudah benar atau ada salah tulis yang dapat menciptakan error
 ```
 
 
