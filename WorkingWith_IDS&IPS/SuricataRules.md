@@ -39,3 +39,39 @@ alert http $HOME_NET any -> $EXTERNAL_NET any (
   sid:2027512; rev:1;
 )
 ```
+## Rule Detecting Covenant (By Content)
+rule ini berfungsi untuk mendeteksi Tools bernama Covenant
+alert ini akan terpicu jika:
+- isi dari payload jika menemukan kalimat HTML `<title>Hello World!</title>`
+- IP yang sama mengirim payload ini sebanyak 4x dalam 10 detik.
+``` suricata
+alert tcp any any -> $HOME_NET any (
+  msg:"detected by body";
+  content:"<title>Hello World!</title>";
+  detection_filter: track by_src, count 4 , seconds 10;
+  priority:1; sid:3000011;
+)
+```
+## Rule Detecting Covenant (Using Analytic)
+rule ini berfungsi untuk mendeteksi Tools bernama Covenant
+bedanya dengan diatas alert ini akan terpicu jika
+- ukuran data yang dikirim sebesar `dsize=312`
+berdasarkan perilaku Covenant yang secara konsisten menggunakan ukuran data `312`
+``` suricata
+alert tcp $HOME_NET any -> any any (
+  msg:"detected by size and counter";
+  dsize:312;
+  detection_filter: track by_src, count 3 , seconds 10;
+  priority:1; sid:3000001;
+)
+```
+## Refference
+- https://suricata.readthedocs.io/en/latest/rules/http-keywords.html
+- https://docs.suricata.io/en/latest/rules/index.html.
+- https://github.com/EmpireProject/Empire/blob/master/data/agent/agent.ps1#L78
+- https://www.keysight.com/blogs/tech/nwvs/2021/06/16/empire-c2-networking-into-the-dark-side
+- https://repositorio-aberto.up.pt/bitstream/10216/142718/2/572020.pdf
+- https://github.com/cobbr/Covenant
+- https://github.com/cobbr/Covenant/blob/master/Covenant/Data/Profiles/DefaultHttpProfile.yaml#L35
+- https://github.com/cobbr/Covenant/blob/master/Covenant/Data/Profiles/DefaultHttpProfile.yaml
+- https://www.bilibili.com/read/cv19510951/
